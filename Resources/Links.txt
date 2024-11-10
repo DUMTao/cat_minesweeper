@@ -1,0 +1,19 @@
+Here I compiled all the resources I utilized in order to make the cat minesweeper!
+I will make sure to categorize the processes and what links I used to make it work as intended
+
+vv- For the hard code -vv
+----------------------------------
+How to make Minesweeper - Tutorial
+https://youtu.be/n0jZRlhLtt0?si=viARZmE47asG6d2X
+
+Cat emoji
+https://emojicombos.com/cat
+
+----------------------------------
+
+vv- Executables -vv
+----------------------------------
+
+
+----------------------------------
+
