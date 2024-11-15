@@ -14,7 +14,8 @@ class DaGame:
     
     # Function for every new game
     def new(self):
-        pass
+        self.board = Board()
+        self.board.display_board()
     
     
     # Function that sets the framerate while the program runs
@@ -24,13 +25,8 @@ class DaGame:
         while self.playing:
             self.clock.tick(FPS)
             self.events()
-            self.update()
             self.draw()
         
-        for event in pygame.event.get():
-            
-            if event.type == pygame.QUIT:
-                self.playing = False
     
     # Setting the appareance of the window
     def draw(self):
@@ -39,3 +35,27 @@ class DaGame:
         pygame.display.flip()
         
     
+    # Win conditions
+    def win_conditions(self):
+        for row in self.board.board_list:
+            
+            for tile in row:
+                if tile.type != "X" and not tile.revealed:
+                    return False
+        
+        return True
+    
+    
+    # So the pop up window, yk actually shows up with the event
+    def events(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit(0)
+
+
+game = DaGame()
+
+while True:
+    game.new()
+    game.run()
