@@ -14,14 +14,18 @@ from settings import *
 
 class Tile:
     
-    def __init__(self, x, y, image, type, revealed = False, flagged = False):
-        self.x, self.y = x * tile_size, y * tile_size
-        self.image = image
-        self.type = type
-        self.revealed = revealed
-        self.flagged = flagged
+    def __init__(self, x, y, tile_type):
+        self.x = x
+        self.y = y
+        self.type = tile_type
+        self.revealed = False
+        self.flagged = False
+        self.image = None
         
-    # If conditionals for the logic of the cookie finding
+    def reveal(self):
+        self.revealed = True
+    
+    '''# If conditionals for the logic of the cookie finding
     def draw(self, board_surface):
         
         if not self.flagged and self.revealed:
@@ -35,44 +39,46 @@ class Tile:
         
     def __repr__(self):
         return self.type
+    '''
     
 class Board:
     
     # When it initializes, it will create the grid where the mines and tiles will be placed
-    def __init__(self):
-        self.board_surface = pygame.Surface((width, height))
+    def __init__(self, width, height, num_mines):
+        self.width = width
+        self.height = height
+        self.num_mines = num_mines
         
-        self.board_list = [[Tile(columns, rows, tile_empty, ".") for row in range(rows)] for col in range(columns)]
+        self.board_list = self.initalize_board()
         self.place_mines()
-        self.place_clues()
-        
-        self.dug = []
+    
+    def initalize_board(self):
+        return [[Tile(x, y, ' ') for x in range(self.width // tile_size)] for y in range(self.height // tile_size)]
+    
     
     # Self Explanatory lol
     def place_mines(self):
-        for n in range(mine_ammount):
-            while True:
-                x = random.randint(0, rows - 1)
-                y = random.randint(0, columns - 1)
-                
-                if self.board_list[x][y].type == ".":
-                    self.board_list[x][y].image = tile_cat
-                    self.board_list[x][y].type = "X"
-                    
-                    break;
+        mines_placed = 0
         
-    def place_clues(self):
+        while mines_placed < self.num_mines:
+            x = random.randint(0, len(self.board_list[0]) - 1)
+            y = random.randint(0, len(self.board_list) - 1)
+            
+            if 0 <= x < len(self.board_list) and 0 <= y < len(self.board_list[x]):
+                self.board_list[x][y].type = 'X'
+                mines_placed += 1
+            
+    def dig_up(self, x, y):
+        # Check if the indices are within the valid range
+        if x < 0 or x >= len(self.board_list[0]) or y < 0 or y >= len(self.board_list):
+            return
         
-        for x in range(rows):
-            for y in range(columns):
-                
-                if self.board_list[x][y].type != "X":
-                    total_mines = self.around(x, y)
-                
-                if total_mines > 0:
-                    self.board_list[x][y].image = tile_nums[total_mines - 1]
-                    self.board_list[x][y].type = "C"
-        
+        self.board_list[y][x].revealed = True
+    
+    
+    
+    
+    '''   
     @staticmethod
     def is_inside(x, y):
         return 0 <= x < rows and 0 <= y < columns
@@ -133,6 +139,6 @@ class Board:
     def display_board(self):
         for row in self.board_list:
             print(row)
-            
+    '''
             
             

@@ -1,9 +1,6 @@
 # Importing
-import random
-
-import pygame as py
+import pygame
 import os
-from settings import *
 
 
 WHITE = (255, 255, 255)
@@ -19,34 +16,23 @@ bg_color = LIGHTGREY
 
 
 # Global game settings
-tile_size = 32
-rows = 15
-columns = 15
+tile_size = 40
+width = 800
+height = 600
 #---------------------
 
 title = "MewoSweeper!"
-
 FPS = 60
 
-width = tile_size * rows
-height = tile_size * columns
-
-
-mine_ammount = random.randint(1, 6)
 
 tile_nums = []
 
-# Making sure that the tile pngs scale to the size of the time_size variable
 for i in range(1, 9):
-    tile_nums.append(py.transform.scale(py.image.load(os.path.join("Assets", f"Tile{i}.png")), (tile_size, tile_size)))
-    
-# Setting up the png's for the tiles
-tile_empty = py.transform.scale(py.image.load(os.path.join("Assets", "TileEmpty.png")), (tile_size, tile_size))
+    tile_nums.append(pygame.transform.scale(pygame.image.load(os.path.join("assets", f"Tile{i}.png")), (tile_size, tile_size)))
 
-# Tile exloded
-tile_cookie = py.transform.scale(py.image.load(os.path.join("Assets", "TileCookie.png")), (tile_size, tile_size))
-
-tile_flag = py.transform.scale(py.image.load(os.path.join("Assets", "TileFlag.png")), (tile_size, tile_size))
-tile_cat = py.transform.scale(py.image.load(os.path.join("Assets", "TileCatcus.png")), (tile_size, tile_size))
-tile_unknown = py.transform.scale(py.image.load(os.path.join("Assets", "TileUnknown.png")), (tile_size, tile_size))
-tile_not_cookie = py.transform.scale(py.image.load(os.path.join("Assets", "TileNotMine.png")), (tile_size, tile_size))
+tile_empty = pygame.transform.scale(pygame.image.load(os.path.join("assets", "TileEmpty.png")), (tile_size, tile_size))
+tile_exploded = pygame.transform.scale(pygame.image.load(os.path.join("assets", "TileExploded.png")), (tile_size, tile_size))
+tile_flag = pygame.transform.scale(pygame.image.load(os.path.join("assets", "TileFlag.png")), (tile_size, tile_size))
+tile_mine = pygame.transform.scale(pygame.image.load(os.path.join("assets", "TileMine.png")), (tile_size, tile_size))
+tile_unknown = pygame.transform.scale(pygame.image.load(os.path.join("assets", "TileUnknown.png")), (tile_size, tile_size))
+tile_not_mine = pygame.transform.scale(pygame.image.load(os.path.join("assets", "TileNotMine.png")), (tile_size, tile_size))
