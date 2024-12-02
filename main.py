@@ -4,8 +4,9 @@ from sprites import *
 
 
 class Game:
+    # From here to the function draw, these basically initialize the game by setting up the display, and the window
     def __init__(self):
-        self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
+        self.screen = pygame.display.set_mode((width, height))
         pygame.display.set_caption(title)
         self.clock = pygame.time.Clock()
 
@@ -27,6 +28,8 @@ class Game:
         self.board.draw(self.screen)
         pygame.display.flip()
 
+    # Logic for winning, if all the unknown tiles are revealed and none of them are a cat; 
+    # all the cats will be flagged and the user wins!
     def check_win(self):
         for row in self.board.board_list:
             for tile in row:
@@ -34,6 +37,8 @@ class Game:
                     return False
         return True
 
+    # Main logic on how the game works.
+    # It sets up the input commands like left and right click to flag the cookies and/or find the cats
     def events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -42,10 +47,12 @@ class Game:
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mx, my = pygame.mouse.get_pos()
-                mx //= TILESIZE
-                my //= TILESIZE
+                mx //= tile_size
+                my //= tile_size
 
+                # Input logic for left click
                 if event.button == 1:
+                    
                     if not self.board.board_list[mx][my].flagged:
                         # dig and check if exploded
                         if not self.board.dig(mx, my):
@@ -60,6 +67,7 @@ class Game:
                                         tile.revealed = True
                             self.playing = False
 
+                # Input logic for right click
                 if event.button == 3:
                     if not self.board.board_list[mx][my].revealed:
                         self.board.board_list[mx][my].flagged = not self.board.board_list[mx][my].flagged
@@ -72,6 +80,7 @@ class Game:
                             if not tile.revealed:
                                 tile.flagged = True
 
+    # Basically a reset function for when the user gets a cookie or wins the game
     def end_screen(self):
         while True:
             for event in pygame.event.get():

@@ -1,42 +1,40 @@
 # Importing
 import pygame
 import os
+import random
 
 
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-DARKGREY = (40, 40, 40)
-LIGHTGREY = (100, 100, 100)
-GREEN = (0, 255, 0)
-DARKGREEN = (0, 200, 0)
-BLUE = (0, 0, 255)
-RED = (255, 0, 0)
-YELLOW = (255, 255, 0)
-bg_color = LIGHTGREY
+
+
+dark_grey = (40, 40, 40)
+light_gray = (100, 100, 100)
+gween = (0, 255, 0)
+
+bg_color = gween
 
 
 # Global game settings
-TILESIZE = 32
-ROWS = 15
-COLS = 15
+tile_size = 32
+rows = 15
+columns = 15
 #---------------------
 
 title = "MewoSweeper!"
 
-
-AMOUNT_MINES = 5
-WIDTH = TILESIZE * ROWS
-HEIGHT = TILESIZE * COLS
+# Making the amount of mines spawned in the game dynamic
+AMOUNT_MINES = random.randint(7, 10)
+width = tile_size * rows
+height = tile_size * columns
 FPS = 60
 
 tile_numbers = []
 
 for i in range(1, 9):
-    tile_numbers.append(pygame.transform.scale(pygame.image.load(os.path.join("Assets", f"Tile{i}.png")), (TILESIZE, TILESIZE)))
+    tile_numbers.append(pygame.transform.scale(pygame.image.load(os.path.join("Assets", f"Tile{i}.png")), (tile_size, tile_size)))
 
-tile_empty = pygame.transform.scale(pygame.image.load(os.path.join("Assets", "TileEmpty.png")), (TILESIZE, TILESIZE))
-tile_exploded = pygame.transform.scale(pygame.image.load(os.path.join("Assets", "TileCookie.png")), (TILESIZE, TILESIZE))
-tile_flag = pygame.transform.scale(pygame.image.load(os.path.join("Assets", "TileFlag.png")), (TILESIZE, TILESIZE))
-tile_catmine = pygame.transform.scale(pygame.image.load(os.path.join("Assets", "TileCatcus.png")), (TILESIZE, TILESIZE))
-tile_unknown = pygame.transform.scale(pygame.image.load(os.path.join("Assets", "TileUnknown.png")), (TILESIZE, TILESIZE))
-tile_not_mine = pygame.transform.scale(pygame.image.load(os.path.join("Assets", "TileNotMine.png")), (TILESIZE, TILESIZE))
+tile_empty = pygame.transform.scale(pygame.image.load(os.path.join("Assets", "TileEmpty.png")), (tile_size, tile_size))
+tile_exploded = pygame.transform.scale(pygame.image.load(os.path.join("Assets", "TileCookie.png")), (tile_size, tile_size))
+tile_flag = pygame.transform.scale(pygame.image.load(os.path.join("Assets", "TileFlag.png")), (tile_size, tile_size))
+tile_catmine = pygame.transform.scale(pygame.image.load(os.path.join("Assets", "TileCatcus.png")), (tile_size, tile_size))
+tile_unknown = pygame.transform.scale(pygame.image.load(os.path.join("Assets", "TileUnknown.png")), (tile_size, tile_size))
+tile_not_mine = pygame.transform.scale(pygame.image.load(os.path.join("Assets", "TileNotMine.png")), (tile_size, tile_size))
