@@ -16,23 +16,27 @@ bg_color = LIGHTGREY
 
 
 # Global game settings
-tile_size = 40
-width = 800
-height = 600
+TILESIZE = 32
+ROWS = 15
+COLS = 15
 #---------------------
 
 title = "MewoSweeper!"
+
+
+AMOUNT_MINES = 5
+WIDTH = TILESIZE * ROWS
+HEIGHT = TILESIZE * COLS
 FPS = 60
 
-
-tile_nums = []
+tile_numbers = []
 
 for i in range(1, 9):
-    tile_nums.append(pygame.transform.scale(pygame.image.load(os.path.join("assets", f"Tile{i}.png")), (tile_size, tile_size)))
+    tile_numbers.append(pygame.transform.scale(pygame.image.load(os.path.join("Assets", f"Tile{i}.png")), (TILESIZE, TILESIZE)))
 
-tile_empty = pygame.transform.scale(pygame.image.load(os.path.join("assets", "TileEmpty.png")), (tile_size, tile_size))
-tile_exploded = pygame.transform.scale(pygame.image.load(os.path.join("assets", "TileExploded.png")), (tile_size, tile_size))
-tile_flag = pygame.transform.scale(pygame.image.load(os.path.join("assets", "TileFlag.png")), (tile_size, tile_size))
-tile_mine = pygame.transform.scale(pygame.image.load(os.path.join("assets", "TileMine.png")), (tile_size, tile_size))
-tile_unknown = pygame.transform.scale(pygame.image.load(os.path.join("assets", "TileUnknown.png")), (tile_size, tile_size))
-tile_not_mine = pygame.transform.scale(pygame.image.load(os.path.join("assets", "TileNotMine.png")), (tile_size, tile_size))
+tile_empty = pygame.transform.scale(pygame.image.load(os.path.join("Assets", "TileEmpty.png")), (TILESIZE, TILESIZE))
+tile_exploded = pygame.transform.scale(pygame.image.load(os.path.join("Assets", "TileCookie.png")), (TILESIZE, TILESIZE))
+tile_flag = pygame.transform.scale(pygame.image.load(os.path.join("Assets", "TileFlag.png")), (TILESIZE, TILESIZE))
+tile_catmine = pygame.transform.scale(pygame.image.load(os.path.join("Assets", "TileCatcus.png")), (TILESIZE, TILESIZE))
+tile_unknown = pygame.transform.scale(pygame.image.load(os.path.join("Assets", "TileUnknown.png")), (TILESIZE, TILESIZE))
+tile_not_mine = pygame.transform.scale(pygame.image.load(os.path.join("Assets", "TileNotMine.png")), (TILESIZE, TILESIZE))
