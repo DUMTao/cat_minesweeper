@@ -12,6 +12,10 @@ gween = (0, 255, 0)
 
 bg_color = gween
 
+# Difficulty levels
+easy = 7
+medium = 14
+hard = 18
 
 # Global game settings
 tile_size = 32
@@ -22,7 +26,10 @@ columns = 15
 title = "MewoSweeper!"
 
 # Making the amount of mines spawned in the game dynamic
-AMOUNT_MINES = random.randint(7, 10)
+# delete the easy and replace it with the difficulty you want!
+AMOUNT_MINES = hard
+# --------------------------------------------
+
 width = tile_size * rows
 height = tile_size * columns
 FPS = 60
